@@ -22,7 +22,9 @@ cat ~/.ssh/id_rsa.pub
  sudo apt upgrade -y
 ```
 
-* run install script
-```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/jasonhilder/system_install/main/install.sh)"
-```
+* run the install.sh script
+
+* relog
+
+* source zsh file
+
