@@ -1,5 +1,6 @@
 #!/bin/bash
 
+LOCALUSR=jason
 set -eu -o pipefail # fail on error and report it, debug all lines
 
 sudo -n true
@@ -38,12 +39,12 @@ fi
 #DOTFILES
 if [ ! -d ~/.dotfiles/ ]; then
    eval "$(ssh-agent -s)"
-   ssh-add /home/jason/.ssh/id_rsa
-   cd ~ && git clone git@github.com:jasonhilder/dotfiles.git
-   mv ~/dotfiles ~/.dotfiles
-   cd ~/.dotfiles && stow zsh/ tmux/ alacritty/ nvim/
-   cd ~
-   source ~/.zshrc && zshalias 
+   ssh-add /home/$LOCALUSR/.ssh/id_rsa
+   cd /home/$LOCALUSR && git clone git@github.com:jasonhilder/dotfiles.git
+   mv /home/$LOCALUSR/dotfiles /$LOCALUSR/.dotfiles
+   cd /home/$LOCALUSR/.dotfiles && stow zsh/ tmux/ alacritty/ nvim/
+   cd /home/$LOCALUSR
+   source /home/$LOCALUSR/.zshrc && zshalias 
 fi
 
 #ZSH && OH MY ZSH
@@ -147,11 +148,11 @@ then
     echo ###################
     echo 
 
-    cd ~ && wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -q --show-progress
+    cd /home/$LOCALUSR/ && wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -q --show-progress
     
-    mv nvim.appimage ~/.nvim-app/nvim.appimage
-    mkdir /home/jason/.nvim-app
-    cd /home/jason/.nvim-app && chmod u+x nvim.appimage
+    mkdir /home/$LOCALUSR/.nvim-app
+    mv nvim.appimage /home/$LOCALUSR/.nvim-app/nvim.appimage
+    cd /home/$LOCALUSR/.nvim-app && chmod u+x nvim.appimage
 fi
 
 
@@ -178,4 +179,3 @@ then
     sudo apt install -y google-chrome-stable
 fi
 
-source 
