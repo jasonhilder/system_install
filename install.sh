@@ -58,16 +58,6 @@ then
     sudo apt install -qq -y zsh    
 fi
 
-#VOLTA(nodejs)
-if ! command -v volta >/dev/null 2>&1
-then
-    echo ###################
-    echo "installing volta..."
-    echo ###################
-    echo 
-    curl https://get.volta.sh | bash
-fi
-
 #ALACRITTY
 if ! command -v alacritty >/dev/null 2>&1
 then
@@ -125,19 +115,7 @@ then
 
     sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
-    sudo chmod +x /usr/local/bin/docker-compose
-fi
-
-
-#RUST
-if ! command -v rustup &> /dev/null
-then
-    echo ###################
-    echo "Installing rust..."
-    echo ###################
-    echo 
-
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    sudo chmod a+x /usr/local/bin/docker-compose
 fi
 
 #NEOVIM
@@ -152,30 +130,5 @@ then
     
     mkdir /home/$LOCALUSR/.nvim-app
     mv nvim.appimage /home/$LOCALUSR/.nvim-app/nvim.appimage
-    cd /home/$LOCALUSR/.nvim-app && chmod u+x nvim.appimage
+    cd /home/$LOCALUSR/.nvim-app && chmod a+x nvim.appimage
 fi
-
-
-#TRANSMISSION
-if ! command -v transmission >/dev/null 2>&1
-then
-    echo ###################
-    echo "installing transmission..."
-    echo ###################
-    echo 
-
-    sudo apt install -y transmission
-fi
-
-
-#GOOGLE
-if ! command -v google-chrome >/dev/null 2>&1
-then
-    echo ###################
-    echo "installing google chrome..."
-    echo ###################
-    echo 
-
-    sudo apt install -y google-chrome-stable
-fi
-
