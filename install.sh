@@ -5,28 +5,6 @@ set -eu -o pipefail # fail on error and report it, debug all lines
 sudo -n true
 test $? -eq 0 || exit 1 "you should have sudo privilege to run this script"
 
-#DOTFILES
-if [ ! -d ~/.dotfiles/ ]; then
-    # Will enter here if $DIRECTORY exists, even if it contains spaces
-   echo "exist"
-   cd ~ && git clone git@github.com:jasonhilder/dotfiles.git
-   mv ~/dotfiles ~/.dotfiles
-   cd ~/.dotfiles && stow zsh/ tmux/ alacritty/ nvim/
-   cd ~
-   source ~/.zshrc && zshalias 
-if
-
-#ZSH && OH MY ZSH
-if ! command -v zsh >/dev/null 2>&1
-then
-    echo ###################
-    echo "installing zsh..."
-    echo ###################
-    echo
-    
-    sudo apt install -qq -y zsh    
-fi
-
 #RIPGREP
 if ! command -v rg >/dev/null 2>&1
 then
@@ -55,6 +33,28 @@ then
     echo ###################
     echo 
     sudo apt install xclip -qq -y
+fi
+
+#DOTFILES
+if [ ! -d ~/.dotfiles/ ]; then
+   eval "$(ssh-agent -s)"
+   ssh-add /home/jason/.ssh/id_rsa
+   cd ~ && git clone git@github.com:jasonhilder/dotfiles.git
+   mv ~/dotfiles ~/.dotfiles
+   cd ~/.dotfiles && stow zsh/ tmux/ alacritty/ nvim/
+   cd ~
+   source ~/.zshrc && zshalias 
+fi
+
+#ZSH && OH MY ZSH
+if ! command -v zsh >/dev/null 2>&1
+then
+    echo ###################
+    echo "installing zsh..."
+    echo ###################
+    echo
+    
+    sudo apt install -qq -y zsh    
 fi
 
 #VOLTA(nodejs)
@@ -111,7 +111,6 @@ then
 
     sudo apt update
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-    sudo groupadd docker
     sudo usermod -aG docker $USER
 fi
 
@@ -148,7 +147,11 @@ then
     echo ###################
     echo 
 
-    wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -q --show-progress
+    cd ~ && wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -q --show-progress
+    
+    mv nvim.appimage ~/.nvim-app/nvim.appimage
+    mkdir /home/jason/.nvim-app
+    cd /home/jason/.nvim-app && chmod u+x nvim.appimage
 fi
 
 
@@ -175,10 +178,4 @@ then
     sudo apt install -y google-chrome-stable
 fi
 
-
-
-#ANDROID STUDIO
-#FLUTTER
-#REACT NATIVE
-#ZOLA
-#MEGA
+source 
