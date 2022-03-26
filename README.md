@@ -23,5 +23,3 @@ cat ~/.ssh/id_rsa.pub
 
  sudo apt upgrade -y
 ```
-
-WbuSHUQcr2
