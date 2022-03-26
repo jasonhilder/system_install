@@ -59,3 +59,10 @@ fi
     git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
     echo installing zsh syntax highlighting plugin
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    
+    
+#ANDROID STUDIO
+#FLUTTER
+#REACT NATIVE
+#MEGA 
+#ZOLA
