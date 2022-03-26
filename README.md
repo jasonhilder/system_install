@@ -15,11 +15,14 @@ cat ~/.ssh/id_rsa.pub
 
 * log into github and add ssh key
 
-* clone system install repo
-
 * update the system
 ```
  sudo apt update
 
  sudo apt upgrade -y
+```
+
+* run install script
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/jasonhilder/system_install/main/install.sh)"
 ```
