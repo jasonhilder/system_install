@@ -1,4 +1,4 @@
-#System install scripts
+# System install scripts
 
 initial steps for system install script
 
@@ -41,7 +41,7 @@ cd ~ && source ~/.zshrc && zshalias
   - Window Is Ready - Notification Remover
 
 ---
-##Software install list:
+## Software install list:
 - Ripgrep
 - GNU Stow
 - Xclip
@@ -61,7 +61,7 @@ cd ~ && source ~/.zshrc && zshalias
 - Lazy Docker
 - Zola
 
-##Software to be installed manually
+## Software to be installed manually
 - Android Studio
 - React Native Sdk
 - Flutter Sdk
