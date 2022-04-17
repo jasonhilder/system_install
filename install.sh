@@ -8,7 +8,7 @@ then
     echo ###################
     echo "installing ripgrep..."
     echo ###################
-    echo 
+    echo
     sudo apt install -y ripgrep
 fi
 
@@ -18,7 +18,7 @@ then
     echo ###################
     echo "installing gnu stow..."
     echo ###################
-    echo 
+    echo
     sudo apt install stow -qq -y
 fi
 
@@ -28,8 +28,18 @@ then
     echo ###################
     echo "installing xclip..."
     echo ###################
-    echo 
+    echo
     sudo apt install xclip -qq -y
+fi
+
+#GNOME TWEAKS
+if ! command -v gnome-tweaks &> /dev/null
+then
+    echo ###################
+    echo "installing gnome tweaks..."
+    echo ###################
+    echo
+    sudo apt install gnome-tweaks -qq -y
 fi
 
 #DOTFILES
@@ -37,7 +47,7 @@ if [ ! -d ~/.dotfiles/ ]; then
    eval "$(ssh-agent -s)"
    ssh-add /home/$LOCALUSR/.ssh/id_rsa
    cd /home/$LOCALUSR && git clone git@github.com:jasonhilder/dotfiles.git
-   mv /home/$LOCALUSR/dotfiles /$LOCALUSR/.dotfiles
+   mv /home/$LOCALUSR/dotfiles /home/$LOCALUSR/.dotfiles
    cd /home/$LOCALUSR/.dotfiles && stow zsh/ tmux/ alacritty/ nvim/
    cd /home/$LOCALUSR
 fi
@@ -49,8 +59,8 @@ then
     echo "installing zsh..."
     echo ###################
     echo
-    
-    sudo apt install -qq -y zsh    
+
+    sudo apt install -qq -y zsh
 fi
 
 #ALACRITTY
@@ -59,7 +69,7 @@ then
     echo ###################
     echo "installing alacritty..."
     echo ###################
-    echo 
+    echo
     sudo apt install -qq -y alacritty
 fi
 
@@ -69,7 +79,7 @@ then
     echo ###################
     echo "installing tmux..."
     echo ###################
-    echo 
+    echo
     sudo apt install -qq -y tmux
 fi
 
@@ -79,7 +89,7 @@ then
     echo ###################
     echo "installing docker..."
     echo ###################
-    echo 
+    echo
 
     sudo apt-get remove docker docker.io containerd runc
 
@@ -90,7 +100,7 @@ then
     lsb-release
 
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
- 
+
     echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -106,7 +116,7 @@ then
     echo ###################
     echo "Installing docker-compose..."
     echo ###################
-    echo 
+    echo
 
     sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
@@ -119,10 +129,10 @@ then
     echo ###################
     echo "Installing neovim..."
     echo ###################
-    echo 
+    echo
 
     cd /home/$LOCALUSR/ && wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -q --show-progress
-    
+
     mkdir /home/$LOCALUSR/.nvim-app
     mv nvim.appimage /home/$LOCALUSR/.nvim-app/nvim.appimage
     cd /home/$LOCALUSR/.nvim-app && chmod a+x nvim.appimage
@@ -135,8 +145,8 @@ then
     echo ###################
     echo "Installing ddev deps"
     echo ###################
-    echo 
-	
+    echo
+
     cd ~ && curl -LO https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh && bash install_ddev.sh
     sudo apt install libnss3-tools -qq -y
     sudo wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 -O /usr/local/bin/mkcert
@@ -150,7 +160,7 @@ then
     echo ###################
     echo "installing volta..."
     echo ###################
-    echo 
+    echo
     curl https://get.volta.sh | bash
 fi
 
@@ -160,9 +170,25 @@ then
     echo ###################
     echo "Installing rust..."
     echo ###################
-    echo 
+    echo
 
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
+#LUA
+if ! command -v lua &> /dev/null
+then
+    echo ###################
+    echo "Installing lua..."
+    echo ###################
+    echo
+
+    cd ~
+    curl -R -O http://www.lua.org/ftp/lua-5.4.4.tar.gz
+    tar zxf lua-5.4.4.tar.gz
+    cd lua-5.4.4
+    make all test
+    cd ~ && mv ~/lua-5.4.4 ~/lua
 fi
 
 #TRANSMISSION
@@ -171,7 +197,7 @@ then
     echo ###################
     echo "installing transmission..."
     echo ###################
-    echo 
+    echo
 
     sudo apt install -y transmission
 fi
@@ -182,7 +208,7 @@ then
     echo ###################
     echo "installing google chrome..."
     echo ###################
-    echo 
+    echo
 
     sudo apt install -y google-chrome-stable
 fi
@@ -193,8 +219,8 @@ then
     echo ###################
     echo "Installing lazygit..."
     echo ###################
-    echo 
-	
+    echo
+
     tag=$(curl --silent https://api.github.com/repos/jesseduffield/lazygit/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
 
     echo $tag
@@ -213,8 +239,8 @@ then
     echo ###################
     echo "Installing lazydocker..."
     echo ###################
-    echo 
-	
+    echo
+
     tag=$(curl --silent https://api.github.com/repos/jesseduffield/lazydocker/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
 
     echo $tag
@@ -233,8 +259,8 @@ then
     echo ###################
     echo "Installing zola..."
     echo ###################
-    echo 
-	
+    echo
+
     tag=$(curl --silent https://api.github.com/repos/getzola/zola/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
 
     echo $tag
@@ -247,10 +273,6 @@ fi
 
 #OH MY ZSH
 if [ ! -d ~/.oh-my-zsh/ ]; then
-    echo installing zsh auto suggestion plugin
-    sudo apt install zsh-autosuggestions
-    echo installing zsh syntax highlighting plugin
-    sudo apt install zsh-syntax-highlighting
     echo installing oh my zsh
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
@@ -258,5 +280,4 @@ fi
 #ANDROID STUDIO
 #FLUTTER
 #REACT NATIVE
-#MEGA 
-#ZOLA
+#MEGA
