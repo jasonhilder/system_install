@@ -18,9 +18,9 @@ cat ~/.ssh/id_rsa.pub
 
 * update the system
 ```
- sudo apt update
+sudo apt update
 
- sudo apt upgrade -y
+sudo apt upgrade -y
 ```
 
 * run the install.sh script
@@ -29,10 +29,16 @@ cat ~/.ssh/id_rsa.pub
 
 * run the theme.sh script
 
+* restart terminal and run
+```
+cd ~ && source ~/.zshrc && zshalias
+```
+
 * Install gnome extensions
   - User themes
   - Just perfection
   - Simply Workspaces
+  - Window Is Ready - Notification Remover
 
 ---
 ##Software install list:
