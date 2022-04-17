@@ -277,7 +277,5 @@ if [ ! -d ~/.oh-my-zsh/ ]; then
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-#ANDROID STUDIO
-#FLUTTER
-#REACT NATIVE
-#MEGA
+#ADD KEYBIND ALT+P FOR WORKSPACE 5
+dconf write /org/gnome/desktop/wm/keybindings/switch-to-workspace-5 "['<Alt>p']"
