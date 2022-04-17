@@ -1,4 +1,4 @@
-#System install scripts
+# System install scripts
 
 initial steps for system install script
 
@@ -35,7 +35,7 @@ cat ~/.ssh/id_rsa.pub
   - Simply Workspaces
 
 ---
-##Software install list:
+## Software install list:
 - Ripgrep
 - GNU Stow
 - Xclip
@@ -55,7 +55,7 @@ cat ~/.ssh/id_rsa.pub
 - Lazy Docker
 - Zola
 
-##Software to be installed manually
+## Software to be installed manually
 - Android Studio
 - React Native Sdk
 - Flutter Sdk
