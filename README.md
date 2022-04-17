@@ -1,8 +1,9 @@
-#system install scripts
+#System install scripts
 
 initial steps for system install script
 
 * Generate ssh key and copy cat output
+
 ```
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
@@ -26,5 +27,36 @@ cat ~/.ssh/id_rsa.pub
 
 * relog
 
-* source zsh file
+* run the theme.sh script
 
+* Install gnome extensions
+  - User themes
+  - Just perfection
+  - Simply Workspaces
+
+---
+##Software install list:
+- Ripgrep
+- GNU Stow
+- Xclip
+- Gnome Tweaks
+- Zsh && Oh My Zsh
+- Neovim
+- Alacritty
+- Tmux
+- Docker
+- Docker Compose
+- DDEV
+- Volta (nodejs)
+- Rust
+- Lua
+- Transmission
+- Lazy Git
+- Lazy Docker
+- Zola
+
+##Software to be installed manually
+- Android Studio
+- React Native Sdk
+- Flutter Sdk
+- Mega
