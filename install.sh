@@ -80,7 +80,16 @@ then
     echo "installing tmux..."
     echo ###################
     echo
-    sudo apt install -qq -y tmux
+    # dependencies
+    sudo apt install libncurses5-dev libncursesw5-dev libevent-dev
+
+    wget "https://github.com/tmux/tmux/releases/download/3.2a/tmux-3.2a.tar.gz"
+    tar xvf "tmux-3.2a.tar.gz"
+    cd tmux-3.2a
+    ./configure --prefix=${HOME}/.local
+    make
+    sudo make install
+    rm -rf tmux-3.2a*
 fi
 
 #DOCKER
